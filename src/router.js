@@ -39,7 +39,9 @@ export default new Router({
       beforeEnter: shouldBeAuthenticated,
       component: () => import('./views/Profile.vue')
     },
-    { path: '/404', component: NotFound },
-    { path: '*', redirect: '/404' },
+    { path: '/404',
+      component: NotFound },
+    { path: '*',
+      redirect: '/404' },
   ]
 })

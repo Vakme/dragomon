@@ -1,5 +1,12 @@
 # dragomon
 
+## Firebase setup
+Rename `config.json.sample` to `config.json` and fill with Firebase credentials.
+You need to enable in Firebase console:
+- Database
+- Storage
+- Google Auth
+
 ## Project setup
 ```
 yarn install
