@@ -34,10 +34,20 @@
 </template>
 
 <script>
+import db from '../db'
+
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  firebase: {
+    monsters: db.ref('monsters')
+  },
+  mounted () {
+    /*this.$firebaseRefs.monsters.push({
+      text: 'monsteeer'
+    })*/
   }
 }
 </script>

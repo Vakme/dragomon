@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <navbar></navbar>
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
@@ -8,6 +9,15 @@
   </div>
 </template>
 
+<script>
+  import Navbar from './components/Navbar'
+  export default {
+    name: 'app',
+    components: {
+      'navbar': Navbar,
+    }
+  }
+</script>
 <style lang="scss">
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
