@@ -3,13 +3,12 @@
 
           <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-          <b-navbar-brand href="#">NavBar</b-navbar-brand>
+          <b-navbar-brand to="/">Dragomon</b-navbar-brand>
 
           <b-collapse is-nav id="nav_collapse">
 
               <b-navbar-nav>
-                  <b-nav-item href="#">Link</b-nav-item>
-                  <b-nav-item href="#" disabled>Disabled</b-nav-item>
+                  <b-nav-item to="/about">About</b-nav-item>
               </b-navbar-nav>
 
               <!-- Right aligned nav items -->
@@ -27,12 +26,12 @@
                       <b-dropdown-item href="#">FA</b-dropdown-item>
                   </b-nav-item-dropdown>
 
-                  <b-nav-item-dropdown right v-if="loggedIn">
+                  <b-nav-item-dropdown right v-if="isLoggedIn">
                       <!-- Using button-content slot -->
                       <template slot="button-content">
-                          User
+                          {{ getUsername }}
                       </template>
-                      <b-dropdown-item href="#">Profile</b-dropdown-item>
+                      <b-dropdown-item to="/profile">Profile</b-dropdown-item>
                       <b-dropdown-item href="#" @click="signOut">Signout</b-dropdown-item>
                   </b-nav-item-dropdown>
                   <b-nav-item v-else @click="signIn">
@@ -54,8 +53,15 @@ export default {
   props: { },
   data: function () {
     return {
-      loggedIn: false,
       errors: String
+    }
+  },
+  computed: {
+    isLoggedIn() {
+      return this.$store.getters.getLoginState;
+    },
+    getUsername() {
+      return this.$store.getters.getUser.displayName;
     }
   },
   firebase: {
@@ -68,15 +74,14 @@ export default {
   },
   methods: {
     signIn: function () {
-      let provider = new Firebase.auth.GoogleAuthProvider();
-      Firebase.auth().signInWithPopup(provider)
-        .then(() => this.loggedIn = true)
-        .catch(() => this.errors = "Login error");
+     this.$store.dispatch('login')
+       .then(() => this.$router.replace('profile'))
+       .catch(() => this.errors = 'Login error')
     },
     signOut: function () {
-      Firebase.auth().signOut()
-        .then(() => this.loggedIn = false)
-        .catch(() => this.errors = "Logout error")
+      this.$store.dispatch('logout')
+        .then(() => this.$router.replace('/'))
+        .catch(() => this.errors = 'Logout error')
     }
   }
 }
