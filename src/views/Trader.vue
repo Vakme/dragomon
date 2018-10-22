@@ -5,7 +5,7 @@
 <script>
   export default {
     name: "trader"
-  }
+}
 </script>
 
 <style scoped>

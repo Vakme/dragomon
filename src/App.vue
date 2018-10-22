@@ -2,15 +2,18 @@
   <div id="app">
     <navbar v-if="isLoggedIn"></navbar>
     <router-view/>
+    <feedback></feedback>
   </div>
 </template>
 
 <script>
   import Navbar from './components/Navbar'
+  import Feedback from './components/Feedback'
   export default {
     name: 'app',
     components: {
       'navbar': Navbar,
+      'feedback': Feedback
     },
     computed: {
       isLoggedIn() {
