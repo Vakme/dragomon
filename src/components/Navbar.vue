@@ -8,35 +8,14 @@
           <b-collapse is-nav id="nav_collapse">
 
               <b-navbar-nav>
-                  <b-nav-item to="/about">About</b-nav-item>
+                  <b-nav-item v-for="item in menu_items" :to="'/'+item.link" :key="item.link">{{item.text}}</b-nav-item>
               </b-navbar-nav>
-
               <!-- Right aligned nav items -->
               <b-navbar-nav class="ml-auto">
-
-                  <b-nav-form>
-                      <b-form-input size="sm" class="mr-sm-2" type="text" placeholder="Search"/>
-                      <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
-                  </b-nav-form>
-
-                  <b-nav-item-dropdown text="Lang" right>
-                      <b-dropdown-item href="#">EN</b-dropdown-item>
-                      <b-dropdown-item href="#">ES</b-dropdown-item>
-                      <b-dropdown-item href="#">RU</b-dropdown-item>
-                      <b-dropdown-item href="#">FA</b-dropdown-item>
-                  </b-nav-item-dropdown>
-
-                  <b-nav-item-dropdown right v-if="isLoggedIn">
-                      <!-- Using button-content slot -->
-                      <template slot="button-content">
-                          {{ getUsername }}
-                      </template>
+                  <b-nav-item-dropdown :text="getUsername" right>
                       <b-dropdown-item to="/profile">Profile</b-dropdown-item>
                       <b-dropdown-item href="#" @click="signOut">Signout</b-dropdown-item>
                   </b-nav-item-dropdown>
-                  <b-nav-item v-else @click="signIn">
-                          Sign in
-                  </b-nav-item>
               </b-navbar-nav>
 
           </b-collapse>
@@ -45,7 +24,6 @@
 
 <script>
 import db from '../db'
-import Firebase from 'firebase/app'
 import 'firebase/auth'
 
 export default {
@@ -53,7 +31,25 @@ export default {
   props: { },
   data: function () {
     return {
-      errors: String
+      errors: String,
+      menu_items: [
+        {
+          text: 'Monsters',
+          link: 'monsters'
+        },
+        {
+          text: 'Trader',
+          link: 'trader'
+        },
+        {
+          text: 'Chat',
+          link: 'chat'
+        },
+        {
+          text: 'Ranking',
+          link: 'ranking'
+        }
+      ]
     }
   },
   computed: {
@@ -67,20 +63,15 @@ export default {
   firebase: {
     monsters: db.ref('monsters')
   },
-  mounted () {
-    /*this.$firebaseRefs.monsters.push({
-      text: 'monsteeer'
-    })*/
-  },
   methods: {
     signIn: function () {
      this.$store.dispatch('login')
-       .then(() => this.$router.replace('profile'))
+       .then(() => this.$router.push('profile'))
        .catch(() => this.errors = 'Login error')
     },
     signOut: function () {
       this.$store.dispatch('logout')
-        .then(() => this.$router.replace('/'))
+        .then(() => this.$router.push('login'))
         .catch(() => this.errors = 'Logout error')
     }
   }

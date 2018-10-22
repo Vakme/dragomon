@@ -15,27 +15,27 @@ export default new Vuex.Store({
   },
   mutations: {
     [LOGIN] (state) {
-      state.user = Firebase.auth().currentUser;
-      state.loggedIn = true;
+      state.user = Firebase.auth().currentUser
+      state.loggedIn = true
     },
-    [LOGOUT](state) {
-      state.user = null;
-      state.loggedIn = false;
+    [LOGOUT] (state) {
+      state.user = null
+      state.loggedIn = false
     }
   },
   actions: {
-    login({ commit }) {
+    login ({ commit }) {
       let provider = new Firebase.auth.GoogleAuthProvider();
-      Firebase.auth().signInWithPopup(provider)
+      return Firebase.auth().signInWithPopup(provider)
         .then(() => commit(LOGIN))
     },
-    logout({ commit }) {
-      Firebase.auth().signOut()
+    logout ({ commit }) {
+      return Firebase.auth().signOut()
         .then(() => commit(LOGOUT))
     }
   },
   getters: {
-    getUser: (state) => { return state.user; },
-    getLoginState: (state) => { return state.loggedIn; }
+    getUser: (state) => { return state.user },
+    getLoginState: (state) => { return state.loggedIn }
   }
 })

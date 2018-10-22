@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import NotFound from './views/NotFound.vue'
 import store from './store'
+
 Vue.use(Router)
 
 const shouldNotBeAuthenticated = (to, from, next) => {
@@ -26,12 +27,32 @@ export default new Router({
     {
       path: '/',
       name: 'home',
+      beforeEnter: shouldBeAuthenticated,
       component: Home
     },
     {
-      path: '/about',
-      name: 'about',
-      component: () => import('./views/About.vue')
+      path: '/ranking',
+      name: 'ranking',
+      beforeEnter: shouldBeAuthenticated,
+      component: () => import('./views/Ranking.vue')
+    },
+    {
+      path: '/monsters',
+      name: 'monsters',
+      beforeEnter: shouldBeAuthenticated,
+      component: () => import('./views/Monsters.vue')
+    },
+    {
+      path: '/trader',
+      name: 'trader',
+      beforeEnter: shouldBeAuthenticated,
+      component: () => import('./views/Trader.vue')
+    },
+    {
+      path: '/chat',
+      name: 'chat',
+      beforeEnter: shouldBeAuthenticated,
+      component: () => import('./views/Chat.vue')
     },
     {
       path: '/profile',
@@ -39,9 +60,15 @@ export default new Router({
       beforeEnter: shouldBeAuthenticated,
       component: () => import('./views/Profile.vue')
     },
+    {
+      path: '/login',
+      name: 'login',
+      beforeEnter: shouldNotBeAuthenticated,
+      component: () => import('./views/Login.vue')
+    },
     { path: '/404',
       component: NotFound },
     { path: '*',
-      redirect: '/404' },
+      redirect: '/404' }
   ]
 })
