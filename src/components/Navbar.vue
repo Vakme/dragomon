@@ -1,11 +1,11 @@
 <template>
       <b-navbar toggleable="md" type="dark" variant="dark" id="navbar">
+          <div class="nav-bg"></div>
+          <b-navbar-toggle target="nav_collapse" class="upper"></b-navbar-toggle>
 
-          <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+          <b-navbar-brand to="/" class="upper">Dragomon</b-navbar-brand>
 
-          <b-navbar-brand to="/">Dragomon</b-navbar-brand>
-
-          <b-collapse is-nav id="nav_collapse">
+          <b-collapse is-nav id="nav_collapse" class="upper">
 
               <b-navbar-nav>
                   <b-nav-item v-for="item in menu_items" :to="'/'+item.link" :key="item.link">{{item.text}}</b-nav-item>
@@ -94,4 +94,23 @@ li {
 a {
   color: #42b983;
 }
+    .nav-bg {
+        position: absolute;
+        width: 100%;
+        height: 100px;
+        transform: skewY(-2deg);
+        background-color: #932307;
+        left: 0;
+        -webkit-box-shadow: 0px 0px 32px 3px rgba(25,26,32,1);
+        -moz-box-shadow: 0px 0px 32px 3px rgba(25,26,32,1);
+        box-shadow: 0px 0px 32px 3px rgba(25,26,32,1);
+    }
+    .upper {
+        z-index: 1;
+    }
+    .bg-dark {
+        background-color: transparent !important;
+        margin-bottom: 50px;
+
+    }
 </style>

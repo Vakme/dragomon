@@ -33,6 +33,6 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background: #d558c8 linear-gradient(-20deg, #d558c8 0%, #24d292 100%);
+  background: #2D2E34;
 }
 </style>

@@ -49,7 +49,20 @@ export default {
       this.$firebaseRefs.userData.child('monsterCount').set(1);
       this.$firebaseRefs.userData.child('monsters').push({
         name: 'Random',
-        type: 'Goldpuker'
+        type: 'Goldpuker',
+        health: 100,
+        stamina: 100,
+        exp: 0,
+        lvl: 1,
+        stats: {
+          perception: 1,
+          strength: 1,
+          constitution: 1,
+          dexterity: 1,
+          intelligence: 1,
+          luck: 1
+        },
+        specialSkill: 1
       });
       this.firstLogin = false;
     }
