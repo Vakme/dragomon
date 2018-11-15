@@ -63,8 +63,11 @@ jobs:
           - v1-dependencies-{{ checksum "yarn.lock" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
-      - run: yarn install
-      - run: cd functions && npm install
+      - run: cd functions && npm install && cd ..
+      - run:
+           name: Deploy Master to Firebase
+           command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
+
 
       - save_cache:
           paths:
