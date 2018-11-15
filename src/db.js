@@ -1,13 +1,12 @@
 import Firebase from 'firebase/app'
 import 'firebase/database'
-import config from '../config'
 const firebaseApp = Firebase.initializeApp({
-  apiKey: config.apiKey,
-  authDomain: config.authDomain,
-  databaseURL: config.databaseURL,
-  projectId: config.projectId,
-  storageBucket: config.storageBucket,
-  messagingSenderId: config.messagingSenderId
+  apiKey: process.env.VUE_APP_APIKEY,
+  authDomain: process.env.VUE_APP_AUTHDOMAIN,
+  databaseURL: process.env.VUE_APP_DB,
+  projectId: process.env.VUE_APP_ID,
+  storageBucket: process.env.VUE_APP_STORAGE,
+  messagingSenderId: process.env.VUE_APP_MSG
 })
 const db = firebaseApp.database()
 export default db
