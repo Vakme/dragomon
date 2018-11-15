@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="feedback">
         <b-btn class="fixed-btn" v-b-modal.feedback variant="light">Leave feedback</b-btn>
 
         <!-- Modal Component -->
