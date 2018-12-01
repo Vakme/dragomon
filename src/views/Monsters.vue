@@ -1,14 +1,15 @@
 <template>
-    <b-container class="monstergrid">
-        <b-row>
-            <b-col sm="12" lg="3">
-                1 of 3
-            </b-col>
-            <b-col sm="12" lg="3">2 of 3</b-col>
-            <b-col sm="12" lg="3">3 of 3</b-col>
-            <b-col sm="12" lg="3">4 of 3</b-col>
-        </b-row>
-    </b-container>
+    <div class="md-layout md-gutter md-alignment-center">
+        <div class="md-layout-item md-medium-size-20 md-small-size-50 md-xsmall-size-100">
+            col 1
+        </div>
+        <div class="md-layout-item md-medium-size-20 md-small-size-50 md-xsmall-size-100">
+            col 2
+        </div>
+        <div class="md-layout-item md-medium-size-20 md-small-size-50 md-xsmall-size-100">
+            col 3
+        </div>
+    </div>
 </template>
 
 <script>

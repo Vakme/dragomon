@@ -2,13 +2,13 @@
   <div class="home">
     This is homepage
       {{userData}}
-      <b-modal v-model="firstLogin">
-          Congratulations, you receive an egg!
-          And something just Hatched!
-          <div slot="modal-footer" class="w-100">
-              <b-btn @click="addMonster">Close Me</b-btn>
-          </div>
-      </b-modal>
+
+      <md-dialog-alert
+              :md-active.sync="firstLogin"
+              md-title="Suprise!"
+              md-content="Congratulations, you receive an egg!
+              And something just Hatched!"
+      ></md-dialog-alert>
   </div>
 </template>
 
