@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <navbar v-if="isLoggedIn"></navbar>
-    <router-view/>
-    <feedback></feedback>
+      <navbar v-if="isLoggedIn"></navbar>
+      <md-content class="content">
+        <router-view/>
+      </md-content>
+      <feedback></feedback>
   </div>
 </template>
 
@@ -23,6 +25,8 @@
   }
 </script>
 <style lang="scss">
+  @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic|Material+Icons');
+
   html, body, #app {
     min-height: 100vh;
   }
@@ -35,4 +39,7 @@
   color: #2c3e50;
   background: #2D2E34;
 }
+  .content {
+    padding: 0;
+  }
 </style>

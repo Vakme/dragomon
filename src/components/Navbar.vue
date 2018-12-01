@@ -1,25 +1,42 @@
-<template>
-      <b-navbar toggleable="md" type="dark" variant="dark" id="navbar">
-          <div class="nav-bg"></div>
-          <b-navbar-toggle target="nav_collapse" class="upper"></b-navbar-toggle>
+<template><div id="navbar">
+        <md-toolbar class="md-transparent" md-elevation="0">
+            <div class="nav-bg"></div>
+            <div class="upper">
+                <div class="md-toolbar-section-start">
+                    <md-button class="md-icon-button" @click="showNavigation = true">
+                        <md-icon>menu</md-icon>
+                    </md-button>
+                <h3 class="md-title">Dragomon</h3>
+                </div>
+            </div>
+        </md-toolbar>
+        <md-drawer :md-active.sync="showNavigation">
+            <md-toolbar class="md-transparent" md-elevation="0">
+                <span class="md-title">Menu</span>
+            </md-toolbar>
 
-          <b-navbar-brand to="/" class="upper">Dragomon</b-navbar-brand>
+            <md-list>
+                <md-list-item v-for="item in menu_items" :to="'/'+item.link" :key="item.link">
+                    <span class="md-list-item-text">{{item.text}}</span>
+                </md-list-item>
+            </md-list>
 
-          <b-collapse is-nav id="nav_collapse" class="upper">
+            <md-divider></md-divider>
 
-              <b-navbar-nav>
-                  <b-nav-item v-for="item in menu_items" :to="'/'+item.link" :key="item.link">{{item.text}}</b-nav-item>
-              </b-navbar-nav>
-              <!-- Right aligned nav items -->
-              <b-navbar-nav class="ml-auto">
-                  <b-nav-item-dropdown :text="getUsername" right>
-                      <b-dropdown-item to="/profile">Profile</b-dropdown-item>
-                      <b-dropdown-item href="#" @click="signOut">Signout</b-dropdown-item>
-                  </b-nav-item-dropdown>
-              </b-navbar-nav>
+            <md-subheader>
+                {{getUsername}}
+            </md-subheader>
 
-          </b-collapse>
-      </b-navbar>
+            <md-list>
+                <md-list-item to="/profile">
+                    <span class="md-list-item-text">Profile</span>
+                </md-list-item>
+                <md-list-item href="#" @click="signOut">
+                    <span class="md-list-item-text">Signout</span>
+                </md-list-item>
+            </md-list>
+        </md-drawer>
+    </div>
 </template>
 
 <script>
@@ -31,8 +48,13 @@ export default {
   props: { },
   data: function () {
     return {
+      showNavigation: false,
       errors: String,
       menu_items: [
+        {
+          text: 'Home',
+          link: ''
+        },
         {
           text: 'Monsters',
           link: 'monsters'
@@ -82,34 +104,25 @@ export default {
 <style scoped lang="scss">
 h3 {
   margin: 40px 0 0;
+    flex: 1;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
     .nav-bg {
         position: absolute;
         width: 100%;
-        height: 100px;
+        height: 120px;
         transform: skewY(-2deg);
         background-color: #932307;
         left: 0;
-        -webkit-box-shadow: 0px 0px 32px 3px rgba(25,26,32,1);
-        -moz-box-shadow: 0px 0px 32px 3px rgba(25,26,32,1);
-        box-shadow: 0px 0px 32px 3px rgba(25,26,32,1);
+        bottom: 10px;
+        -webkit-box-shadow: 0 0 32px 3px rgba(25,26,32,1);
+        -moz-box-shadow: 0 0 32px 3px rgba(25,26,32,1);
+        box-shadow: 0 0 32px 3px rgba(25,26,32,1);
     }
     .upper {
         z-index: 1;
     }
-    .bg-dark {
-        background-color: transparent !important;
+    #navbar {
         margin-bottom: 50px;
 
     }
