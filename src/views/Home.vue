@@ -3,40 +3,30 @@
     This is homepage
       {{userData}}
 
-      <md-dialog-alert
-              :md-active.sync="firstLogin"
-              md-title="Suprise!"
-              md-content="Congratulations, you receive an egg!
-              And something just Hatched!"
-      ></md-dialog-alert>
+      <md-dialog :md-active.sync="firstLogin">
+              <md-dialog-title>Suprise!</md-dialog-title>
+              <p>Congratulations, you receive an egg!
+              And something just Hatched!</p>
+
+        <md-dialog-actions>
+          <md-button class="md-primary" @click="addFirstMonster">Close</md-button>
+        </md-dialog-actions>
+      </md-dialog>
   </div>
 </template>
 
 <script>
-  import db from '../db'
+  import {UserDataMixin} from '../mixins/UserDataMixin'
+  import {Monster} from '../models/Monster'
 
 export default {
   name: 'home',
   data() {
     return {
-      userData: {},
       firstLogin: false
     }
   },
-  computed: {
-    getUid() {
-      return this.$store.getters.getUser.uid;
-    }
-  },
-  firebase: function () {
-    let uid = this.getUid;
-    return {
-      userData: {
-        source: db.ref('users/' + uid),
-        asObject: true
-      }
-    }
-  },
+  mixins: [UserDataMixin],
   watch: {
     userData: function (user) {
       if(user.monsterCount === 0) {
@@ -45,25 +35,10 @@ export default {
     }
   },
   methods: {
-    addMonster: function () {
+    addFirstMonster: function () {
+      console.log(Monster.baseMonster().getMonster())
       this.$firebaseRefs.userData.child('monsterCount').set(1);
-      this.$firebaseRefs.userData.child('monsters').push({
-        name: 'Random',
-        type: 'Goldpuker',
-        health: 100,
-        stamina: 100,
-        exp: 0,
-        lvl: 1,
-        stats: {
-          perception: 1,
-          strength: 1,
-          constitution: 1,
-          dexterity: 1,
-          intelligence: 1,
-          luck: 1
-        },
-        specialSkill: 1
-      });
+      this.$firebaseRefs.userData.child('monsters').push(Monster.baseMonster().getMonster());
       this.firstLogin = false;
     }
   }

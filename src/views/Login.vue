@@ -44,6 +44,7 @@
         height: 100vh;
         overflow: hidden;
         background-color: #2D2E34;
+        text-align: center;
     }
     .login-bg {
         position: absolute;
