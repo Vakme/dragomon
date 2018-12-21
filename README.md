@@ -1,4 +1,4 @@
-# dragomon [![CircleCI (all branches)](https://img.shields.io/circleci/project/github/Vakme/dragomon.svg)](https://circleci.com/gh/Vakme/dragomon) ![GitHub (pre-)release](https://img.shields.io/github/release-pre/Vakme/dragomon.svg) 
+# dragomon [![CircleCI (all branches)](https://img.shields.io/circleci/project/github/Vakme/dragomon.svg)](https://circleci.com/gh/Vakme/dragomon) ![GitHub (pre-)release](https://img.shields.io/github/release-pre/Vakme/dragomon.svg) [![StackShare](https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/Vakme/dragomon)
 
 ## Firebase setup
 Rename `env.local.sample` to `env.local` and fill with Firebase credentials.
