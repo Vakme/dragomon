@@ -46,7 +46,7 @@ jobs:
           paths: dist
           
       - codecov/upload:
-          file: {{ coverage_report_filepath }}
+          file: "./report"
   deploy:
     docker:
       # specify the version you desire here
